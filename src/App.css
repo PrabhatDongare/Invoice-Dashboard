@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+    /* Solid color -> text-custom-color, bg-custom-color, border-custom-color */
+    --color-custom-color: #9747FF;
+}
+
+@utility bg-gradient-custom {
+    background-image: linear-gradient(to bottom,
+            #DD2A7B 5%,
+            #9747FF 55%,
+            #334CCA 100%);
+}
+
+@utility text-gradient-custom {
+    background-image: linear-gradient(to bottom,
+            #DD2A7B 5%,
+            #9747FF 55%,
+            #334CCA 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
