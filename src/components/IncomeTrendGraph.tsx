@@ -8,6 +8,8 @@ import {
   Title,
   Tooltip,
   Legend,
+  type ChartData,
+  type ChartOptions,
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 
@@ -23,7 +25,7 @@ ChartJS.register(
 );
 
 export default function IncomeChart() {
-  const data = {
+  const data: ChartData<'bar' | 'line'> = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
     datasets: [
       {
@@ -58,7 +60,7 @@ export default function IncomeChart() {
     ],
   };
 
-  const options = {
+  const options: ChartOptions<'bar' | 'line'> = {
     responsive: true,
     plugins: {
       legend: {
@@ -78,7 +80,7 @@ export default function IncomeChart() {
         max: 8000,
         ticks: {
           stepSize: 2000,
-          callback: (value) => `$${value / 1000}k`,
+          callback: (value) => `$${Number(value) / 1000}k`,
           //   color: 'purple',
           font: {
             size: 14,
@@ -96,7 +98,7 @@ export default function IncomeChart() {
         max: 100,
         ticks: {
           stepSize: 50,
-          callback: (value) => `${value}%`,
+          callback: (value) => `${Number(value)}%`,
           //   color: 'brown',
           font: {
             size: 14,
@@ -115,13 +117,11 @@ export default function IncomeChart() {
         grid: {
           //   color: 'pink',
           //   borderColor: 'pink',
-
           drawOnChartArea: false,
-          drawBorder: true,
         },
       },
     },
-  } as const;
+  };
 
-  return <Chart type="bar" data={data as any} options={options as any} />;
+  return <Chart type="bar" data={data} options={options} />;
 }
